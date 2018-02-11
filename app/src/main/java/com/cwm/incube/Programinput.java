@@ -78,7 +78,8 @@ public class Programinput extends AppCompatActivity  {
                 x.putExtra("main_tree",tree1.toString());
                 x.putExtra("second_tree",tree2.toString());
                 x.putExtra("third_tree",tree3.toString());
-                Programinput.this.startActivity(x);
+                setResult(RESULT_OK, x);
+                finish();
             }
         });
     }

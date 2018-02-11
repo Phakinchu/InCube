@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -38,14 +39,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static com.cwm.incube.R.id.maintree;
 import static com.cwm.incube.R.id.map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
+    public GoogleMap mMap;
     private double area=0.0;
     List<LatLng> listLatLng = new ArrayList<>();
     List<Marker> listMarker = new ArrayList<>();
+    List<Circle> listCircle = new ArrayList<>();
+    List<Circle> listCircleRadius = new ArrayList<>();
     Polyline polyline;
     Polygon polygon;
     TextView areatext ;
@@ -64,7 +68,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 Intent x =new Intent(getApplicationContext(),Programinput.class) ;
-                startActivity(x);
+                startActivityForResult(x,1);
+
             }
         });
 
@@ -80,6 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         addMarkerOnMapLongClick();
         MarkerOnClick();
         onMarkerDrag();
+
     }
 
     private void checkPermission() {
@@ -157,21 +163,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .strokeWidth((float)3.5)
                 .strokeColor(Color.argb(255,0,175,0))
                 .fillColor(Color.argb(30,0,255,0)));
-        //addRandomTree(25,50);
-        addGridTree(1.5);
     }
 
     private void addTree(double radius ,double lat,double lng,int r,int g,int b){
-        mMap.addCircle(new CircleOptions()
+        Circle treePoint = mMap.addCircle(new CircleOptions()
                 .center(new LatLng(lat, lng))
                 .radius(radius)
                 .strokeColor(Color.argb(0,0,0,0))
                 .fillColor(Color.argb(40,r,g,b)));
-        mMap.addCircle(new CircleOptions()
+        Circle treeRadius = mMap.addCircle(new CircleOptions()
                 .center(new LatLng(lat, lng))
                 .radius(0.5)
                 .strokeColor(Color.argb(0,0,0,0))
                 .fillColor(Color.argb(255,r,g,b)));
+        listCircle.add(treePoint);
+        listCircleRadius.add(treeRadius);
+
     }
 
     private void addRandomTree(double radius ,int min,int max){
@@ -197,13 +204,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    private void addGridTree(double radius ){
+    private void addGridTree(double mainRadius,double subRadius ){
         LatLng endPointNE = endPointNE();
         LatLng endPointSW = endPointSW();
-        for (double i = endPointNE.latitude - meterToRad(radius); i > endPointSW.latitude; i -= meterToRad(radius *2)) {
-            for(double j = endPointSW.longitude + meterToRad(radius); j < endPointNE.longitude;j += meterToRad(radius *2)) {
+        for (double i = endPointNE.latitude - meterToRad(mainRadius); i > endPointSW.latitude; i -= meterToRad(mainRadius *2)) {
+            for(double j = endPointSW.longitude + meterToRad(mainRadius); j < endPointNE.longitude;j += meterToRad(mainRadius *2)) {
                 if (PolyUtil.containsLocation(new LatLng(i,j), listLatLng, true)) {
-                    addTree(radius ,i,j, 255, 0, 0);
+                    addTree(mainRadius ,i,j, 255, 0, 0);
+                }
+            }
+        }
+        for (double i = endPointNE.latitude - meterToRad(mainRadius*2); i > endPointSW.latitude; i -= meterToRad(mainRadius*2)) {
+            for(double j = endPointSW.longitude + meterToRad(mainRadius*2); j < endPointNE.longitude;j += meterToRad(mainRadius*2)) {
+                if (PolyUtil.containsLocation(new LatLng(i,j), listLatLng, true)) {
+                    addTree(subRadius ,i,j, 255, 255, 0);
                 }
             }
         }
@@ -288,6 +302,44 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .color(Color.argb(255,0,175,0)));
             }
         });
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            clearCircle();
+            String mainTree = data.getStringExtra("main_tree");
+            String subTree = data.getStringExtra("third_tree");
+            double mainRadius=0;
+            double subRadius=0;
+            if(mainTree.equals("มะม่วง")){
+                mainRadius = 1.5;
+            }else if(mainTree.equals("ลำไย")){
+                mainRadius = 4;
+            }
+            if(subTree.equals("พริกไทย")){
+                subRadius = 0.75;
+            }else if(subTree.equals("ผักกูด")){
+                subRadius = 0.75;
+            }else if(subTree.equals("ตะไคร้")){
+                subRadius = 0.75;
+            }else if(subTree.equals("คะน้า")){
+                subRadius = 0.75;
+            }else if(subTree.equals("ผักบุ้งจีน")){
+                subRadius = 0.75;
+            }
+            addGridTree(mainRadius,subRadius);
+        }
+    }
+
+    private void clearCircle(){
+        for (int i = 0; i < listCircle.size(); i++) {
+            listCircle.get(i).remove();
+        }
+        for (int i = 0; i < listCircleRadius.size(); i++) {
+            listCircleRadius.get(i).remove();
+        }
     }
 
 }

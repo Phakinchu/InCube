@@ -42,7 +42,11 @@
         <activity android:name=".Programinput" />
         <activity android:name=".news" />
         <activity android:name=".Select_apps" />
-        <activity android:name=".Resultprogram"></activity>
+        <activity android:name=".Resultprogram" />
+        <activity
+            android:name=".Result"
+            android:label="@string/title_activity_result"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

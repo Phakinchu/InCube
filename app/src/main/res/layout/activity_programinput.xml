@@ -36,6 +36,7 @@
             android:layout_marginStart="8dp"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown"
+            android:popupBackground="#ffffff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.421"
             app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -63,6 +64,7 @@
             android:layout_marginTop="4dp"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown"
+            android:popupBackground="#ffffff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.421"
             app:layout_constraintStart_toEndOf="@+id/textView10"
@@ -107,6 +109,7 @@
             android:layout_marginTop="8dp"
             android:background="@android:drawable/btn_dropdown"
             android:spinnerMode="dropdown"
+            android:popupBackground="#ffffff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.421"
             app:layout_constraintStart_toEndOf="@+id/textView2"
@@ -250,7 +253,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:backgroundTint="#000000"
-                android:hint="Name"
+                android:hint="N"
                 android:inputType="textPersonName"
                 android:textColor="#000000"
                 android:textColorHint="#cacaca" />
@@ -269,7 +272,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:backgroundTint="#000000"
-                android:hint="Name"
+                android:hint="P"
                 android:inputType="textPersonName"
                 android:textColor="#000000"
                 android:textColorHint="#cacaca" />
@@ -288,7 +291,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
                 android:backgroundTint="#000000"
-                android:hint="Name"
+                android:hint="K"
                 android:inputType="textPersonName"
                 android:textColor="#000000"
                 android:textColorHint="#cacaca" />
@@ -311,22 +314,46 @@
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/borderbutton"
             android:text="ยืนยัน"
-            app:layout_constraintLeft_toLeftOf="@+id/linearLayout2"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="97dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginEnd="72dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/borderbutton"
             android:text="ยกเลิก"
-            app:layout_constraintRight_toRightOf="@+id/linearLayout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="ต้นทุน: "
+            android:textColor="#000000"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="139dp"
+            android:layout_height="39dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#000000"
+            android:ems="10"
+            android:hint="Bath"
+            android:inputType="textPersonName"
+            android:textColorHint="#cacaca"
+            app:layout_constraintStart_toEndOf="@+id/textView18"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
 

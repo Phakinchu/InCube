@@ -82,6 +82,15 @@ public class Programinput extends AppCompatActivity  {
                 finish();
             }
         });
+
+        Button _testtimeline =(Button)findViewById(R.id.button3) ;
+        _testtimeline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent x =new Intent(getApplicationContext(),Result_main.class) ;
+                startActivity(x);
+            }
+        });
     }
 }
 

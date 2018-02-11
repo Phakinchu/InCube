@@ -260,7 +260,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         listLatLng.remove(marker.getPosition());
         listMarker.remove(marker);
         clearPolyline();
-        polyline = mMap.addPolyline(new PolylineOptions().addAll(listLatLng));
+        polyline = mMap.addPolyline(new PolylineOptions().addAll(listLatLng)
+                .color(Color.argb(255,0,175,0)));
     }
 
     private void onMarkerDrag(){
@@ -283,7 +284,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             private void drag(Marker marker){
                 listLatLng.set(index, marker.getPosition());
                 clearPolyline();
-                polyline = mMap.addPolyline(new PolylineOptions().addAll(listLatLng));
+                polyline = mMap.addPolyline(new PolylineOptions().addAll(listLatLng)
+                        .color(Color.argb(255,0,175,0)));
             }
         });
     }

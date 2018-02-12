@@ -78,14 +78,14 @@ public class Programinput extends AppCompatActivity  {
         _tonewsblog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent x =new Intent(getApplicationContext(),Result.class) ;
+                Intent x = new Intent(getApplicationContext(),All_result.class) ;
                 Bundle data = getIntent().getExtras();
-                double[] a = data.getDoubleArray("lat");
+                double[] lat = data.getDoubleArray("lat");
                 x.putExtra("main_tree",tree1.toString());
                 x.putExtra("second_tree",tree2.toString());
                 x.putExtra("third_tree",tree3.toString());
                 x.putExtras(data);
-                Log.d("DebugTag", "lat Test: " + Double.toString(a[0]));
+                Log.d("DebugTag", "test input : " + lat[0]);
                 startActivity(x);
             }
         });

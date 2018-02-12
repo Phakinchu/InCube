@@ -47,7 +47,7 @@
             android:name=".Result_main"
             android:label="@string/title_activity_result_main"
             android:theme="@style/AppTheme" />
-        <activity android:name=".test"></activity>
+        <activity android:name=".All_result"></activity>
     </application>
 
 </manifest>

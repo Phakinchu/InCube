@@ -42,7 +42,7 @@ import java.util.Random;
 import static com.cwm.incube.R.id.maintree;
 import static com.cwm.incube.R.id.map;
 
-public class Result extends FragmentActivity implements OnMapReadyCallback {
+public class All_result extends FragmentActivity implements OnMapReadyCallback {
 
     public GoogleMap mMap;
     List<LatLng> listLatLng = new ArrayList<>();
@@ -55,7 +55,7 @@ public class Result extends FragmentActivity implements OnMapReadyCallback {
         checkPermission();
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fadein,R.anim.fadeout);
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.activity_all_result);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFragment.getMapAsync(this);
     }
@@ -74,7 +74,6 @@ public class Result extends FragmentActivity implements OnMapReadyCallback {
         }
         addPolygon();
         computeGridRadius();
-
     }
 
     private void checkPermission() {

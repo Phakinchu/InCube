@@ -19,14 +19,14 @@
             android:id="@+id/textView3"
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:gravity="center_vertical"
             android:text="พันธ์ุไม้รอง:"
             android:textColor="#000000"
             android:textSize="15dp"
             app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintLeft_toLeftOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            app:layout_constraintStart_toStartOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <Spinner
             android:id="@+id/thirdtreespinner"
@@ -41,34 +41,6 @@
             app:layout_constraintHorizontal_bias="0.421"
             app:layout_constraintStart_toEndOf="@+id/textView3"
             app:layout_constraintTop_toTopOf="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center_vertical"
-            android:text="พันธ์ุไม้รอง:"
-            android:textColor="#000000"
-            android:textSize="15dp"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintLeft_toLeftOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-        <Spinner
-            android:id="@+id/secondtreespinner"
-            android:layout_width="223dp"
-            android:layout_height="42dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"
-            android:popupBackground="#ffffff"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.421"
-            app:layout_constraintStart_toEndOf="@+id/textView10"
-            app:layout_constraintTop_toTopOf="@+id/textView10" />
 
         <TextView
             android:id="@+id/textView"
@@ -106,10 +78,9 @@
             android:layout_height="42dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
             android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown"
             android:popupBackground="#ffffff"
+            android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.421"
             app:layout_constraintStart_toEndOf="@+id/textView2"

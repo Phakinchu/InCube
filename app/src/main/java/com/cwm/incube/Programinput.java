@@ -45,21 +45,21 @@ public class Programinput extends AppCompatActivity  {
         });
 
         //drop down 2nd tree
-        final Spinner dropdown2 = findViewById(R.id.secondtreespinner);
-        String[] items2 = new String[]{"--เลือก--", "กล้วย"};
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, R.layout.spinner, items2);
-        dropdown2.setAdapter(adapter2);
-        dropdown2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                tree2 = parentView.getItemAtPosition(position).toString();
-
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
-            }
-        });
+//        final Spinner dropdown2 = findViewById(R.id.secondtreespinner);
+//        String[] items2 = new String[]{"--เลือก--", "กล้วย"};
+//        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, R.layout.spinner, items2);
+//        dropdown2.setAdapter(adapter2);
+//        dropdown2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+//                tree2 = parentView.getItemAtPosition(position).toString();
+//
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parentView) {
+//                // your code here
+//            }
+//        });
 
 
         //drop down 3rd tree
@@ -111,7 +111,7 @@ public class Programinput extends AppCompatActivity  {
                 Log.d("RadioButton",radioselect);
 
                 x.putExtra("main_tree",tree1.toString());
-                x.putExtra("second_tree",tree2.toString());
+//                x.putExtra("second_tree",tree2.toString());
                 x.putExtra("third_tree",tree3.toString());
                 x.putExtra("PH",PH.toString());
                 x.putExtra("CD",CD.toString());
@@ -121,7 +121,7 @@ public class Programinput extends AppCompatActivity  {
                 x.putExtra("Cost",Cost.toString());
                 x.putExtra("RadioButton",radioselect.toString());
                 x.putExtra("main_tree",tree1.toString());
-                x.putExtra("second_tree",tree2.toString());
+//                x.putExtra("second_tree",tree2.toString());
                 x.putExtra("third_tree",tree3.toString());
                 x.putExtras(data);
                 startActivity(x);

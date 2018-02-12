@@ -102,7 +102,45 @@
 
         </android.support.constraint.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/texttt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:text="ต้นทุนของท่าน: "
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
+        <TextView
+            android:id="@+id/cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="เพียงพอ/ไม่เพียงพอ"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/texttt"
+            app:layout_constraintTop_toTopOf="@+id/texttt" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/dotred"
+            app:layout_constraintStart_toStartOf="@+id/texttt"
+            app:layout_constraintTop_toBottomOf="@+id/texttt" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:text="TextView"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/imageView9"
+            app:layout_constraintTop_toTopOf="@+id/imageView9" />
 
 
     </android.support.constraint.ConstraintLayout>

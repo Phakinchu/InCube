@@ -62,6 +62,13 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_all_result);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFragment.getMapAsync(this);
+        Intent intent = getIntent();
+        String x = intent.getStringExtra("main_tree");
+        String y = intent.getStringExtra("second_tree");
+        TextView main = (TextView) findViewById(R.id.maintree) ;
+        TextView sub = (TextView) findViewById(R.id.subtree) ;
+        main.setText(x);
+        sub.setText(y);
     }
 
     @Override
@@ -85,8 +92,12 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
         double fund = Double.parseDouble(getIntent().getStringExtra("Cost"));
         double cost = listMainCircle.size()*price.getPrice(mainTree);
         if(fund>=cost){
+            TextView main = (TextView) findViewById(R.id.cost) ;
+            main.setText("พอต่อการใช้เพาะปลูกในพื้นที่นี้");
             Log.d("DebugTag", "is fund enough : YES.\nCost : " + cost);
         }else{
+            TextView main = (TextView) findViewById(R.id.cost) ;
+            main.setText("ไม่พอต่อการใช้เพาะปลูกในพื้นที่นี้");
             Log.d("DebugTag", "is fund enough : NO.\nCost : " + cost);
         }
 

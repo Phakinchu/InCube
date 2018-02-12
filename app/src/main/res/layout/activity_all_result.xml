@@ -107,7 +107,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:text="ต้นทุนของท่าน: "
             android:textColor="#000000"
             app:layout_constraintStart_toStartOf="parent"
@@ -129,18 +129,132 @@
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
             android:src="@drawable/dotred"
-            app:layout_constraintStart_toStartOf="@+id/texttt"
-            app:layout_constraintTop_toBottomOf="@+id/texttt" />
+            app:layout_constraintStart_toStartOf="@+id/yourcost"
+            app:layout_constraintTop_toBottomOf="@+id/yourcost" />
 
         <TextView
             android:id="@+id/textView21"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="234dp"
+            android:layout_height="17dp"
             android:layout_marginStart="12dp"
-            android:text="TextView"
+            android:text="ควรปลูกที่โดย 1ต้น/1จุด มีระยะห่างระหว่างต้น"
             android:textColor="#000000"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/imageView9"
             app:layout_constraintTop_toTopOf="@+id/imageView9" />
+
+        <TextView
+            android:id="@+id/radian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ระยะห่าง"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/textView21"
+            app:layout_constraintTop_toTopOf="@+id/imageView9" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ปลูกได้รวมทั้งหมด "
+            android:textSize="12sp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="@+id/textView21"
+            app:layout_constraintTop_toBottomOf="@+id/textView21" />
+
+        <TextView
+            android:id="@+id/numbermaintree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="จำนวนต้น"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/textView20"
+            app:layout_constraintTop_toTopOf="@+id/textView20" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/dotyellow"
+            app:layout_constraintStart_toStartOf="@+id/imageView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="76dp"
+            android:layout_height="18dp"
+            android:text="ควรปลูกที่โดย "
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/textView21"
+            app:layout_constraintTop_toTopOf="@+id/imageView10" />
+
+        <TextView
+            android:id="@+id/subtreeperdot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20ต้น/1จุด"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/textView22"
+            app:layout_constraintTop_toTopOf="@+id/imageView10" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="มีระยะห่างระหว่างต้น "
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/subtreeperdot"
+            app:layout_constraintTop_toTopOf="@+id/imageView10" />
+
+        <TextView
+            android:id="@+id/radian2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ระยะห่าง"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/textView24"
+            app:layout_constraintTop_toTopOf="@+id/textView24" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ปลูกได้รวมทั้งหมด "
+            android:textSize="12sp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="@+id/textView22"
+            app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+        <TextView
+            android:id="@+id/numbersubtree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="จำนวนต้น"
+            android:textSize="12sp"
+            android:textColor="#000000"
+            app:layout_constraintStart_toEndOf="@+id/textView26"
+            app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+        <TextView
+            android:id="@+id/yourcost"
+            android:layout_width="324dp"
+            android:layout_height="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp"
+            android:text="ต้นทุนของท่านคือ"
+            android:textColor="#000000"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/texttt"
+            app:layout_constraintTop_toBottomOf="@+id/texttt" />
 
 
     </android.support.constraint.ConstraintLayout>

@@ -53,6 +53,7 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
     Polygon polygon;
     Price price = new Price();
     String mainTree = "";
+    double mainRadius=0 , subRadius=0 ,costsub = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +65,7 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
         Intent intent = getIntent();
         String x = intent.getStringExtra("main_tree");
-        String y = intent.getStringExtra("second_tree");
+        String y = intent.getStringExtra("third_tree");
         TextView main = (TextView) findViewById(R.id.maintree) ;
         TextView sub = (TextView) findViewById(R.id.subtree) ;
         main.setText(x);
@@ -84,22 +85,33 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
             listLatLng.add(new LatLng(lat[i],lng[i]));
         }
         if (listLatLng.size() != 0) {
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(listLatLng.get(0), 18));
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(listLatLng.get(0), 19));
         }
         addPolygon();
         computeGridRadius();
 
         double fund = Double.parseDouble(getIntent().getStringExtra("Cost"));
         double cost = listMainCircle.size()*price.getPrice(mainTree);
-        if(fund>=cost){
+
+        if(fund>=(cost+costsub)){
             TextView main = (TextView) findViewById(R.id.cost) ;
             main.setText("พอต่อการใช้เพาะปลูกในพื้นที่นี้");
-            Log.d("DebugTag", "is fund enough : YES.\nCost : " + cost);
-        }else{
+            TextView urcost = (TextView) findViewById(R.id.yourcost) ;
+            urcost.setText("ต้นทุนที่ต้องใช้ "+(cost+costsub)+" บาท ต้นทุนของท่าน"+fund+"บาท ไม่เกินงบประมาณ");
+            Log.d("DebugTag", "is fund enough : YES.\nCost : " + (cost+costsub));
+        }else {
             TextView main = (TextView) findViewById(R.id.cost) ;
             main.setText("ไม่พอต่อการใช้เพาะปลูกในพื้นที่นี้");
-            Log.d("DebugTag", "is fund enough : NO.\nCost : " + cost);
+            TextView urcost = (TextView) findViewById(R.id.yourcost) ;
+            urcost.setText("ต้นทุนที่ต้องใช้ "+(cost+costsub)+" บาท ต้นทุนของท่านคือ "+fund+" บาท ซึ่งไม่เพียงพอ");
+            Log.d("DebugTag", "is fund enough : NO.\nCost : " + (cost+costsub));
         }
+        TextView mainnum = (TextView) findViewById(R.id.numbermaintree) ;
+        mainnum.setText(listMainCircle.size()+" ต้น");
+        TextView subnum = (TextView) findViewById(R.id.numbersubtree) ;
+        subnum.setText(listSubCircle.size()+" ต้น");
+        TextView mainradian = (TextView) findViewById(R.id.radian) ;
+        mainradian.setText(subRadius + " เมตร");
 
     }
 
@@ -212,8 +224,6 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
             clearCircle();
             String mainTree = getIntent().getStringExtra("main_tree");
             String subTree = getIntent().getStringExtra("third_tree");
-            double mainRadius=0;
-            double subRadius=0;
             if(mainTree.equals("มะม่วง")){
                 this.mainTree = "mango";
                 mainRadius = 1.5;
@@ -233,6 +243,37 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
                 subRadius = 0.75;
             }
             addGridTree(mainRadius,subRadius);
+            if(subTree.equals("พริกไทย")){
+                TextView dotpertree = (TextView) findViewById(R.id.subtreeperdot) ;
+                dotpertree.setText("2ต้น/1จุด");
+                TextView numsubtree = (TextView) findViewById(R.id.numbersubtree) ;
+                numsubtree.setText("ประมาณ "+ 2*listSubCircle.size()+" ต้น");
+                costsub = (2*listSubCircle.size())*2 ;
+            }else if(subTree.equals("ผักกูด")){
+                TextView dotpertree = (TextView) findViewById(R.id.subtreeperdot) ;
+                dotpertree.setText("5ต้น/1จุด");
+                TextView numsubtree = (TextView) findViewById(R.id.numbersubtree) ;
+                numsubtree.setText("ประมาณ "+ 5*listSubCircle.size()+" ต้น");
+                costsub = (5*listSubCircle.size())*4 ;
+            }else if(subTree.equals("ตะไคร้")){
+                TextView dotpertree = (TextView) findViewById(R.id.subtreeperdot) ;
+                dotpertree.setText("20ต้น/1จุด");
+                TextView numsubtree = (TextView) findViewById(R.id.numbersubtree) ;
+                numsubtree.setText("ประมาณ "+ 20*listSubCircle.size()+" ต้น");
+                costsub = 0 ;
+            }else if(subTree.equals("คะน้า")){
+                TextView dotpertree = (TextView) findViewById(R.id.subtreeperdot) ;
+                dotpertree.setText("40ต้น/1จุด");
+                TextView numsubtree = (TextView) findViewById(R.id.numbersubtree) ;
+                numsubtree.setText("ประมาณ "+ 40*listSubCircle.size()+" ต้น");
+                costsub = (40*listSubCircle.size())*0.01 ;
+            }else if(subTree.equals("ผักบุ้งจีน")){
+                TextView dotpertree = (TextView) findViewById(R.id.subtreeperdot) ;
+                dotpertree.setText("80ต้น/1จุด");
+                TextView numsubtree = (TextView) findViewById(R.id.numbersubtree) ;
+                numsubtree.setText("ประมาณ "+ 80*listSubCircle.size()+" ต้น");
+                costsub = (40*listSubCircle.size())*0.03 ;
+            }
         }
     }
 

@@ -203,7 +203,7 @@
                 android:layout_weight="0.5"
                 android:backgroundTint="#000000"
                 android:hint="ph%"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:textColor="#000000"
                 android:textColorHint="#cacaca" />
 
@@ -224,7 +224,7 @@
                 android:layout_weight="0.5"
                 android:backgroundTint="#000000"
                 android:hint="lux"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:textColor="#000000"
                 android:textColorHint="#cacaca" />
         </LinearLayout>
@@ -254,7 +254,7 @@
                 android:layout_weight="0.8"
                 android:backgroundTint="#000000"
                 android:hint="N"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:textColor="#000000"
                 android:textColorHint="#cacaca" />
 
@@ -273,7 +273,7 @@
                 android:layout_weight="0.8"
                 android:backgroundTint="#000000"
                 android:hint="P"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:textColor="#000000"
                 android:textColorHint="#cacaca" />
 
@@ -292,7 +292,7 @@
                 android:layout_weight="0.8"
                 android:backgroundTint="#000000"
                 android:hint="K"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:textColor="#000000"
                 android:textColorHint="#cacaca" />
         </LinearLayout>
@@ -351,7 +351,8 @@
             android:backgroundTint="#000000"
             android:ems="10"
             android:hint="Bath"
-            android:inputType="textPersonName"
+            android:textColor="#000000"
+            android:inputType="number"
             android:textColorHint="#cacaca"
             app:layout_constraintStart_toEndOf="@+id/textView18"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />

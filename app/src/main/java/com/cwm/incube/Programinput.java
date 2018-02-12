@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,6 +25,7 @@ public class Programinput extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fadein,R.anim.fadeout);
         setContentView(R.layout.activity_programinput);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         //drop down maintree and intent value
         Spinner dropdown1 = findViewById(R.id.maintreespinner);

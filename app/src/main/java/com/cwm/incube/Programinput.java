@@ -3,15 +3,19 @@ package com.cwm.incube;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+
 public class Programinput extends AppCompatActivity  {
 
     String tree1,tree2,tree3 ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,23 +78,26 @@ public class Programinput extends AppCompatActivity  {
         _tonewsblog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent x =new Intent(getApplicationContext(),Resultprogram.class) ;
+                Intent x =new Intent(getApplicationContext(),Result.class) ;
+                Bundle data = getIntent().getExtras();
+                double[] a = data.getDoubleArray("lat");
                 x.putExtra("main_tree",tree1.toString());
                 x.putExtra("second_tree",tree2.toString());
                 x.putExtra("third_tree",tree3.toString());
-                setResult(RESULT_OK, x);
-                finish();
-            }
-        });
-
-        Button _testtimeline =(Button)findViewById(R.id.button3) ;
-        _testtimeline.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent x =new Intent(getApplicationContext(),Result_main.class) ;
+                x.putExtras(data);
+                Log.d("DebugTag", "lat Test: " + Double.toString(a[0]));
                 startActivity(x);
             }
         });
+
+//        Button _testtimeline =(Button)findViewById(R.id.button3) ;
+//        _testtimeline.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent x =new Intent(getApplicationContext(),Result_main.class) ;
+//                startActivity(x);
+//            }
+//        });
     }
 }
 

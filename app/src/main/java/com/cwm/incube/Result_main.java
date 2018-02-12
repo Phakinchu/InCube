@@ -105,7 +105,7 @@ public class Result_main extends AppCompatActivity {
             // Return a PlaceholderFragment (defined as a static inner class below).
             switch (position){
                 case 0:
-                    return new Result1();
+                    //return new Result1();
                 case 1:
                     return new Result2();
                 default:

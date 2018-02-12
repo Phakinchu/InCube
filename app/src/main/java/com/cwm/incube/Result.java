@@ -42,46 +42,22 @@ import java.util.Random;
 import static com.cwm.incube.R.id.maintree;
 import static com.cwm.incube.R.id.map;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class Result extends FragmentActivity implements OnMapReadyCallback {
 
     public GoogleMap mMap;
-    private double area=0.0;
     List<LatLng> listLatLng = new ArrayList<>();
-    List<Marker> listMarker = new ArrayList<>();
     List<Circle> listCircle = new ArrayList<>();
     List<Circle> listCircleRadius = new ArrayList<>();
-    Polyline polyline;
     Polygon polygon;
-    TextView areatext ;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         checkPermission();
         super.onCreate(savedInstanceState);
         overridePendingTransition(R.anim.fadein,R.anim.fadeout);
-        setContentView(R.layout.activity_maps);
+        setContentView(R.layout.activity_result);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFragment.getMapAsync(this);
-        Button _toinputprogram =(Button)findViewById(R.id.button4) ;
-        _toinputprogram.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent x = new Intent(getApplicationContext(),Programinput.class) ;
-                double[] latArray = new double[listLatLng.size()];
-                double[] lngArray = new double[listLatLng.size()];
-                for (int i=0;i<listLatLng.size();i++) {
-                    latArray[i] = listLatLng.get(i).latitude;
-                    lngArray[i] = listLatLng.get(i).longitude;
-                }
-                Bundle data = new Bundle();
-                data.putDoubleArray("lat",latArray);
-                data.putDoubleArray("lng",lngArray);
-                x.putExtras(data);
-                startActivity(x);
-            }
-        });
-
     }
 
     @Override
@@ -89,11 +65,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
         googleMap.getUiSettings().setMapToolbarEnabled(false);
-
         showCurrentLocation();
-        addMarkerOnMapLongClick();
-        MarkerOnClick();
-        onMarkerDrag();
+        Bundle data = getIntent().getExtras();
+        double[] lat = data.getDoubleArray("lat");
+        double[] lng = data.getDoubleArray("lng");
+        for(int i =0 ; i<lat.length;i++){
+            listLatLng.add(new LatLng(lat[i],lng[i]));
+        }
+        addPolygon();
+        computeGridRadius();
 
     }
 
@@ -118,55 +98,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    private void addMarkerOnMapLongClick() {
-        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-            public void onMapLongClick(LatLng latLng) {
-                if(polygon==null){
-                    addMarker(latLng);
-                }
-            }
-        });
-    }
-
-    private void clearPolyline(){
-        if(polyline != null){
-            polyline.remove();
-        }
-    }
-
-    private void addMarker(LatLng latLng){
-        Marker marker = mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(latLng.latitude, latLng.longitude))
-                .draggable(true));
-        listLatLng.add(latLng);
-        listMarker.add(marker);
-        clearPolyline();
-        polyline = mMap.addPolyline(new PolylineOptions().addAll(listLatLng)
-                .color(Color.argb(255,0,175,0)));
-    }
-
-    private void MarkerOnClick(){
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener(){
-            public boolean onMarkerClick(Marker marker) {
-                if(listLatLng.get(0).equals(marker.getPosition())){
-                    addPolygon();
-                    computeArea();
-                    DecimalFormat df = new DecimalFormat("#.##");
-                    area = Double.valueOf(df.format(area));
-                    areatext  = (TextView)findViewById(R.id.textView5);
-                    areatext.setText(String.valueOf(area));
-                    return false;
-                }else{
-                    deleteMarker(marker);
-                    return true;
-                }
-            }
-        });
-    }
 
     private void addPolygon(){
         mMap.clear();
-        polyline.remove();
         PolygonOptions polygonOptions = new PolygonOptions();
         polygon = mMap.addPolygon(polygonOptions.addAll(listLatLng)
                 .strokeWidth((float)3.5)
@@ -190,28 +124,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    private void addRandomTree(double radius ,int min,int max){
-        Random rand = new Random();
-        int treeCount = rand.nextInt(max)+min;
-        LatLng endPointNE = endPointNE();
-        LatLng endPointSW = endPointSW();
-        for (int i = 0; i < treeCount; i++) {
-            Log.d("DebugTag", "treeCount: " + i);
-            while (true){
-                Random position = new Random();
-                double treeLat = (position.nextDouble()*(endPointNE.latitude-endPointSW.latitude))+endPointSW.latitude;
-                double treeLng = (position.nextDouble()*(endPointNE.longitude-endPointSW.longitude))+endPointSW.longitude;
-                Log.d("DebugTag", "LatLng: " + treeLat+","+treeLng);
-                LatLng treeLatLng = new LatLng(treeLat,treeLng);
-                if(PolyUtil.containsLocation(treeLatLng, listLatLng, true)){
-                    Log.d("DebugTag", "treeLatLng: " + treeLatLng);
-                    addTree(0.5,radius ,treeLat,treeLng,255,0,0);
-                    break;
-                }
-            }
-
-        }
-    }
 
     private void addGridTree(double mainRadius,double subRadius ){
         LatLng endPointNE = endPointNE();
@@ -233,16 +145,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         }
-
-//        while (true){
-//            //Random position = new Random();
-//            //double treeLat = (position.nextDouble()*(endPointNE.latitude-endPointSW.latitude))+endPointSW.latitude;
-//            //double treeLng = (position.nextDouble()*(endPointNE.longitude-endPointSW.longitude))+endPointSW.longitude;
-//
-//            if(PolyUtil.containsLocation(referenceLatLng, listLatLng, true)){
-//                break;
-//            }
-//        }
     }
 
     private double meterToRad(double m){
@@ -275,75 +177,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }return new LatLng(endPointS.latitude,endPointW.longitude);
     }
 
-    private void computeArea(){
-        area = SphericalUtil.computeArea(listLatLng);
-        Log.d("DebugTag", "Area: " + Double.toString(area));
-
+    public void computeGridRadius() {
+        if (polygon!=null) {
+            clearCircle();
+            String mainTree = getIntent().getStringExtra("main_tree");
+            String subTree = getIntent().getStringExtra("third_tree");
+            double mainRadius=0;
+            double subRadius=0;
+            if(mainTree.equals("มะม่วง")){
+                mainRadius = 1.5;
+            }else if(mainTree.equals("ลำไย")){
+                mainRadius = 4;
+            }
+            if(subTree.equals("พริกไทย")){
+                subRadius = 0.75;
+            }else if(subTree.equals("ผักกูด")){
+                subRadius = 0.75;
+            }else if(subTree.equals("ตะไคร้")){
+                subRadius = 0.75;
+            }else if(subTree.equals("คะน้า")){
+                subRadius = 0.75;
+            }else if(subTree.equals("ผักบุ้งจีน")){
+                subRadius = 0.75;
+            }
+            addGridTree(mainRadius,subRadius);
+        }
     }
-
-    private void deleteMarker(Marker marker){
-        marker.remove();
-        listLatLng.remove(marker.getPosition());
-        listMarker.remove(marker);
-        clearPolyline();
-        polyline = mMap.addPolyline(new PolylineOptions().addAll(listLatLng)
-                .color(Color.argb(255,0,175,0)));
-    }
-
-    private void onMarkerDrag(){
-        mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
-            int index;
-
-            public void onMarkerDragStart(Marker marker) {
-                index = listMarker.indexOf(marker);
-                drag(marker);
-            }
-
-            public void onMarkerDrag(Marker marker) {
-                drag(marker);
-            }
-
-            public void onMarkerDragEnd(Marker marker) {
-                drag(marker);
-            }
-
-            private void drag(Marker marker){
-                listLatLng.set(index, marker.getPosition());
-                clearPolyline();
-                polyline = mMap.addPolyline(new PolylineOptions().addAll(listLatLng)
-                        .color(Color.argb(255,0,175,0)));
-            }
-        });
-    }
-
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == 1 && resultCode == RESULT_OK && polygon!=null) {
-//            clearCircle();
-//            String mainTree = data.getStringExtra("main_tree");
-//            String subTree = data.getStringExtra("third_tree");
-//            double mainRadius=0;
-//            double subRadius=0;
-//            if(mainTree.equals("มะม่วง")){
-//                mainRadius = 1.5;
-//            }else if(mainTree.equals("ลำไย")){
-//                mainRadius = 4;
-//            }
-//            if(subTree.equals("พริกไทย")){
-//                subRadius = 0.75;
-//            }else if(subTree.equals("ผักกูด")){
-//                subRadius = 0.75;
-//            }else if(subTree.equals("ตะไคร้")){
-//                subRadius = 0.75;
-//            }else if(subTree.equals("คะน้า")){
-//                subRadius = 0.75;
-//            }else if(subTree.equals("ผักบุ้งจีน")){
-//                subRadius = 0.75;
-//            }
-//            addGridTree(mainRadius,subRadius);
-//        }
-//    }
 
     private void clearCircle(){
         for (int i = 0; i < listCircle.size(); i++) {

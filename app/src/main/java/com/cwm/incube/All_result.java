@@ -113,6 +113,24 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
         TextView mainradian = (TextView) findViewById(R.id.radian) ;
         mainradian.setText(subRadius + " เมตร");
 
+        String soil = getIntent().getStringExtra("RadioButton");
+        if(soil.equals("ดินร่วน")){
+            TextView ursoil = (TextView) findViewById(R.id.yoursoil) ;
+            ursoil.setText(soil +" ซึ่งเหมาะสมกับการเพาะปลูก");
+        }
+        else{
+            TextView ursoil = (TextView) findViewById(R.id.yoursoil) ;
+            ursoil.setText(soil +" ซึ่งไม่เหมาะสมกับการเพาะปลูก ควรปรับผิวดินให้เป็น ดินร่วน");
+        }
+
+        if(mainRadius == 1.5){
+            TextView cal = (TextView) findViewById(R.id.calculate) ;
+            cal.setText("  พืชหลักของท่านคือ มะม่วง ซึ่งใช้เวลาในการเติบโตตั้งแต่ต้นถึงออกผลประมาณ 5 ปี ");
+        }
+        else{
+
+        }
+
     }
 
     private void checkPermission() {

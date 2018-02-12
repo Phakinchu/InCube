@@ -136,7 +136,7 @@
             android:layout_width="234dp"
             android:layout_height="17dp"
             android:layout_marginStart="12dp"
-            android:text="ควรปลูกที่โดย 1ต้น/1จุด มีระยะห่างระหว่างต้น"
+            android:text="ควรปลูกโดย 1ต้น/1จุด มีระยะห่างระหว่างต้น"
             android:textColor="#000000"
             android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/imageView9"
@@ -185,7 +185,7 @@
             android:id="@+id/textView22"
             android:layout_width="76dp"
             android:layout_height="18dp"
-            android:text="ควรปลูกที่โดย "
+            android:text="ควรปลูกโดย "
             android:textColor="#000000"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/textView21"
@@ -279,14 +279,33 @@
 
         <TextView
             android:id="@+id/calculate"
-            android:layout_width="336dp"
-            android:layout_height="141dp"
+            android:layout_width="329dp"
+            android:layout_height="98dp"
             android:layout_marginTop="8dp"
             android:text="Test"
             android:textColor="#000000"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/textView10"
             app:layout_constraintTop_toBottomOf="@+id/yoursoil" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="75dp"
+            android:layout_height="104dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/water"
+            app:layout_constraintStart_toStartOf="@+id/calculate"
+            app:layout_constraintTop_toBottomOf="@+id/calculate" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="151dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/imageView11"
+            app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
 
     </android.support.constraint.ConstraintLayout>

@@ -41,14 +41,18 @@ import java.util.Random;
 
 import static com.cwm.incube.R.id.maintree;
 import static com.cwm.incube.R.id.map;
+import com.cwm.incube.Price;
 
 public class All_result extends FragmentActivity implements OnMapReadyCallback {
 
     public GoogleMap mMap;
     List<LatLng> listLatLng = new ArrayList<>();
-    List<Circle> listCircle = new ArrayList<>();
+    List<Circle> listMainCircle = new ArrayList<>();
+    List<Circle> listSubCircle = new ArrayList<>();
     List<Circle> listCircleRadius = new ArrayList<>();
     Polygon polygon;
+    Price price = new Price();
+    String mainTree = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +76,20 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
         for(int i =0 ; i<lat.length;i++){
             listLatLng.add(new LatLng(lat[i],lng[i]));
         }
+        if (listLatLng.size() != 0) {
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(listLatLng.get(0), 18));
+        }
         addPolygon();
         computeGridRadius();
+
+        double fund = Double.parseDouble(getIntent().getStringExtra("Cost"));
+        double cost = listMainCircle.size()*price.getPrice(mainTree);
+        if(fund>=cost){
+            Log.d("DebugTag", "is fund enough : YES.\nCost : " + cost);
+        }else{
+            Log.d("DebugTag", "is fund enough : NO.\nCost : " + cost);
+        }
+
     }
 
     private void checkPermission() {
@@ -118,7 +134,11 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
                 .radius(treeSize)
                 .strokeColor(Color.argb(0,0,0,0))
                 .fillColor(Color.argb(255,r,g,b)));
-        listCircle.add(treePoint);
+        if(treeSize<0.5){
+            listSubCircle.add(treePoint);
+        }else{
+            listMainCircle.add(treePoint);
+        }
         listCircleRadius.add(treeRadius);
 
     }
@@ -184,8 +204,10 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
             double mainRadius=0;
             double subRadius=0;
             if(mainTree.equals("มะม่วง")){
+                this.mainTree = "mango";
                 mainRadius = 1.5;
             }else if(mainTree.equals("ลำไย")){
+                this.mainTree = "longan";
                 mainRadius = 4;
             }
             if(subTree.equals("พริกไทย")){
@@ -204,8 +226,11 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
     }
 
     private void clearCircle(){
-        for (int i = 0; i < listCircle.size(); i++) {
-            listCircle.get(i).remove();
+        for (int i = 0; i < listMainCircle.size(); i++) {
+            listMainCircle.get(i).remove();
+        }
+        for (int i = 0; i < listSubCircle.size(); i++) {
+            listSubCircle.get(i).remove();
         }
         for (int i = 0; i < listCircleRadius.size(); i++) {
             listCircleRadius.get(i).remove();

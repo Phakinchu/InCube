@@ -85,7 +85,6 @@ public class Programinput extends AppCompatActivity  {
             public void onClick(View view) {
                 Intent x = new Intent(getApplicationContext(),All_result.class) ;
                 Bundle data = getIntent().getExtras();
-                double[] lat = data.getDoubleArray("lat");
                 EditText PH1 = (EditText) findViewById(R.id.editText9);
                 String PH = PH1.getText().toString();
                 EditText CD1 = (EditText) findViewById(R.id.editText10);
@@ -125,7 +124,6 @@ public class Programinput extends AppCompatActivity  {
                 x.putExtra("second_tree",tree2.toString());
                 x.putExtra("third_tree",tree3.toString());
                 x.putExtras(data);
-                Log.d("DebugTag", "test input : " + lat[0]);
                 startActivity(x);
             }
         });

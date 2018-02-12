@@ -165,7 +165,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .fillColor(Color.argb(30,0,255,0)));
     }
 
-    private void addTree(double radius ,double lat,double lng,int r,int g,int b){
+    private void addTree(double treeSize,double radius ,double lat,double lng,int r,int g,int b){
         Circle treePoint = mMap.addCircle(new CircleOptions()
                 .center(new LatLng(lat, lng))
                 .radius(radius)
@@ -173,7 +173,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .fillColor(Color.argb(40,r,g,b)));
         Circle treeRadius = mMap.addCircle(new CircleOptions()
                 .center(new LatLng(lat, lng))
-                .radius(0.5)
+                .radius(treeSize)
                 .strokeColor(Color.argb(0,0,0,0))
                 .fillColor(Color.argb(255,r,g,b)));
         listCircle.add(treePoint);
@@ -196,7 +196,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 LatLng treeLatLng = new LatLng(treeLat,treeLng);
                 if(PolyUtil.containsLocation(treeLatLng, listLatLng, true)){
                     Log.d("DebugTag", "treeLatLng: " + treeLatLng);
-                    addTree(radius ,treeLat,treeLng,255,0,0);
+                    addTree(0.5,radius ,treeLat,treeLng,255,0,0);
                     break;
                 }
             }
@@ -210,14 +210,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         for (double i = endPointNE.latitude - meterToRad(mainRadius); i > endPointSW.latitude; i -= meterToRad(mainRadius *2)) {
             for(double j = endPointSW.longitude + meterToRad(mainRadius); j < endPointNE.longitude;j += meterToRad(mainRadius *2)) {
                 if (PolyUtil.containsLocation(new LatLng(i,j), listLatLng, true)) {
-                    addTree(mainRadius ,i,j, 255, 0, 0);
+                    addTree(0.5,mainRadius ,i,j, 255, 0, 0);
                 }
             }
         }
-        for (double i = endPointNE.latitude - meterToRad(mainRadius*2); i > endPointSW.latitude; i -= meterToRad(mainRadius*2)) {
-            for(double j = endPointSW.longitude + meterToRad(mainRadius*2); j < endPointNE.longitude;j += meterToRad(mainRadius*2)) {
-                if (PolyUtil.containsLocation(new LatLng(i,j), listLatLng, true)) {
-                    addTree(subRadius ,i,j, 255, 255, 0);
+
+        for (int direct = 0 ; direct <= 1 ; direct++) {
+            for (double i = endPointNE.latitude - meterToRad(((direct==0)? mainRadius:subRadius)*2); i > endPointSW.latitude; i -= meterToRad(((direct==0)? mainRadius:subRadius)*2)) {
+                for (double j = endPointSW.longitude + meterToRad(((direct==0)? subRadius:mainRadius)*2); j < endPointNE.longitude; j += meterToRad(((direct==0)? subRadius:mainRadius)*2)) {
+                    if (PolyUtil.containsLocation(new LatLng(i, j), listLatLng, true)) {
+                        addTree(0.3,subRadius, i, j, 255, 255, 0);
+                    }
                 }
             }
         }

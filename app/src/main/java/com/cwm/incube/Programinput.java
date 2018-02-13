@@ -27,6 +27,15 @@ public class Programinput extends AppCompatActivity  {
         setContentView(R.layout.activity_programinput);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
+        Button _tomain =(Button)findViewById(R.id.button3) ;
+        _tomain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent x =new Intent(getApplicationContext(),MainActivity.class) ;
+                startActivity(x);
+            }
+        });
+
         //drop down maintree and intent value
         Spinner dropdown1 = findViewById(R.id.maintreespinner);
         String[] items1 = new String[]{"--เลือก--","มะม่วง", "ลำไย"};

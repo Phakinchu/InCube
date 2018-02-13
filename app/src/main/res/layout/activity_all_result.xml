@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.cwm.incube.CustomScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:id="@+id/scroll">
     android:SmoothScroll
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -15,20 +17,6 @@
         android:background="#ffffff"
         tools:context="com.cwm.incube.All_result">
 
-        <fragment
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.SupportMapFragment"
-            android:layout_width="258dp"
-            android:layout_height="201dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="26dp"
-            android:layout_weight="1"
-            app:layout_constraintHorizontal_bias="0.538"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:context=".MapsActivity" />
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/constraintLayout"
@@ -37,13 +25,14 @@
             android:layout_marginBottom="285dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/bordercolorblack"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/map"
-            app:layout_constraintVertical_bias="0.036">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
+            app:layout_constraintVertical_bias="0.01">
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -147,8 +136,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ระยะห่าง"
-            android:textSize="12sp"
             android:textColor="#000000"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/textView21"
             app:layout_constraintTop_toTopOf="@+id/imageView9" />
 
@@ -157,8 +146,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ปลูกได้รวมทั้งหมด "
-            android:textSize="12sp"
             android:textColor="#000000"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/textView21"
             app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
@@ -167,8 +156,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="จำนวนต้น"
-            android:textSize="12sp"
             android:textColor="#000000"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/textView20"
             app:layout_constraintTop_toTopOf="@+id/textView20" />
 
@@ -226,8 +215,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ปลูกได้รวมทั้งหมด "
-            android:textSize="12sp"
             android:textColor="#000000"
+            android:textSize="12sp"
             app:layout_constraintStart_toStartOf="@+id/textView22"
             app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
@@ -236,8 +225,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="จำนวนต้น"
-            android:textSize="12sp"
             android:textColor="#000000"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/textView26"
             app:layout_constraintTop_toTopOf="@+id/textView26" />
 
@@ -308,6 +297,45 @@
             app:layout_constraintStart_toEndOf="@+id/imageView11"
             app:layout_constraintTop_toTopOf="@+id/imageView11" />
 
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="368dp"
+            android:layout_height="228dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="258dp"
+                android:layout_height="201dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:context=".MapsActivity" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <Button
+            android:id="@+id/tomain"
+            android:layout_width="85dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/borderbutton"
+            android:text="กลับหน้าหลัก"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
     </android.support.constraint.ConstraintLayout>
-</ScrollView>
+</com.cwm.incube.CustomScrollView>

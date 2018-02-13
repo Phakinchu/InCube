@@ -13,8 +13,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -46,6 +48,7 @@ import com.cwm.incube.Price;
 public class All_result extends FragmentActivity implements OnMapReadyCallback {
 
     public GoogleMap mMap;
+    private ScrollView mScrollView;
     List<LatLng> listLatLng = new ArrayList<>();
     List<Circle> listMainCircle = new ArrayList<>();
     List<Circle> listSubCircle = new ArrayList<>();
@@ -63,6 +66,7 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
         setContentView(R.layout.activity_all_result);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFragment.getMapAsync(this);
+        CustomScrollView myScrollView = (CustomScrollView) findViewById(R.id.scroll);
         Intent intent = getIntent();
         String x = intent.getStringExtra("main_tree");
         String y = intent.getStringExtra("third_tree");
@@ -70,7 +74,18 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
         TextView sub = (TextView) findViewById(R.id.subtree) ;
         main.setText(x);
         sub.setText(y);
+
+        Button _tomain =(Button)findViewById(R.id.tomain) ;
+        _tomain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent x =new Intent(getApplicationContext(),MainActivity.class) ;
+                startActivity(x);
+            }
+        });
     }
+
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -139,7 +154,7 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
                 cal.append("(ผักบุ้งจีน) หากปลูกพร้อมมะม่วงจะใช้เวลาเจริญเติบโตอีกประมาณ 1 เดือน จากนั้นสามารถเก็บเกี่ยวได้ทันที หากทำอย่างต่อเนื่องสามารถเก็บเกี่ยวได้ประมาณ 50-55 ครั้ง  ");
             }
             TextView water = (TextView) findViewById(R.id.wateruse) ;
-            water.setText("     ควรใช้น้ำต่อไร่มะม่วงในประมาณ "+(listMainCircle.size()*22.5)+" ลิตรต่อวันในพื้นที่นี้ แต่หากมะม่วงติดผลแล้วควรใช้น้ำประมาณ "+(listMainCircle.size()*22.5)+" ต่อวันต่อพื้นที่นี้");
+            water.setText("     ควรใช้น้ำต่อไร่มะม่วงในประมาณ "+(listMainCircle.size()*22.5)+" ลิตรต่อวันในพื้นที่นี้ แต่หากมะม่วงติดผลแล้วควรใช้น้ำประมาณ "+(listMainCircle.size()*22.5)+" ลิตรต่อวันต่อพื้นที่นี้");
         }
         else if(mainRadius == 4){
             TextView cal = (TextView) findViewById(R.id.calculate) ;
@@ -157,7 +172,7 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
                 cal.append("(ผักบุ้งจีน) หากปลูกพร้อมมะม่วงจะใช้เวลาเจริญเติบโตอีกประมาณ 1 เดือน จากนั้นสามารถเก็บเกี่ยวได้ทันที หากทำอย่างต่อเนื่องสามารถเก็บเกี่ยวได้ประมาณ 80 ครั้ง  ");
             }
             TextView water = (TextView) findViewById(R.id.wateruse) ;
-            water.setText("  ควรใช้น้ำต่อไร่ลำไยในประมาณ "+(listMainCircle.size()*22.5)+" ลิตรต่อวันในพื้นที่นี้ แต่หากมะม่วงติดผลแล้วควรใช้น้ำประมาณ "+(listMainCircle.size()*22.5)+" ต่อวันต่อพื้นที่นี้");
+            water.setText("  ควรใช้น้ำต่อไร่ลำไยในประมาณ "+(listMainCircle.size())+" ลิตรต่อวันในพื้นที่นี้ แต่หากมะม่วงติดผลแล้วควรใช้น้ำประมาณ "+(listMainCircle.size()*22.5)+" ต่อวันต่อพื้นที่นี้");
         }
 
     }

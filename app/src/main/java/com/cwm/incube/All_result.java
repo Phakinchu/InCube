@@ -138,8 +138,10 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
             }else if(subTree.equals("ผักบุ้งจีน")){
                 cal.append("(ผักบุ้งจีน) หากปลูกพร้อมมะม่วงจะใช้เวลาเจริญเติบโตอีกประมาณ 1 เดือน จากนั้นสามารถเก็บเกี่ยวได้ทันที หากทำอย่างต่อเนื่องสามารถเก็บเกี่ยวได้ประมาณ 50-55 ครั้ง  ");
             }
+            TextView water = (TextView) findViewById(R.id.wateruse) ;
+            water.setText("     ควรใช้น้ำต่อไร่มะม่วงในประมาณ "+(listMainCircle.size()*22.5)+" ลิตรต่อวันในพื้นที่นี้ แต่หากมะม่วงติดผลแล้วควรใช้น้ำประมาณ "+(listMainCircle.size()*22.5)+" ต่อวันต่อพื้นที่นี้");
         }
-        else{
+        else if(mainRadius == 4){
             TextView cal = (TextView) findViewById(R.id.calculate) ;
             cal.setText("     พืชหลักของท่านคือ ลำไย ซึ่งใช้เวลาในการเติบโตตั้งแต่ต้นถึงออกผลประมาณ 7 ปี ในช่วงระหว่างนี้สามารถเก็บเกี่ยวพืชปลูกเเซม");
             String subTree = getIntent().getStringExtra("third_tree");
@@ -154,6 +156,8 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
             }else if(subTree.equals("ผักบุ้งจีน")){
                 cal.append("(ผักบุ้งจีน) หากปลูกพร้อมมะม่วงจะใช้เวลาเจริญเติบโตอีกประมาณ 1 เดือน จากนั้นสามารถเก็บเกี่ยวได้ทันที หากทำอย่างต่อเนื่องสามารถเก็บเกี่ยวได้ประมาณ 80 ครั้ง  ");
             }
+            TextView water = (TextView) findViewById(R.id.wateruse) ;
+            water.setText("  ควรใช้น้ำต่อไร่ลำไยในประมาณ "+(listMainCircle.size()*22.5)+" ลิตรต่อวันในพื้นที่นี้ แต่หากมะม่วงติดผลแล้วควรใช้น้ำประมาณ "+(listMainCircle.size()*22.5)+" ต่อวันต่อพื้นที่นี้");
         }
 
     }

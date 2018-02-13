@@ -45,6 +45,8 @@ import static com.cwm.incube.R.id.maintree;
 import static com.cwm.incube.R.id.map;
 import com.cwm.incube.Price;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class All_result extends FragmentActivity implements OnMapReadyCallback {
 
     public GoogleMap mMap;
@@ -57,6 +59,11 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
     Price price = new Price();
     String mainTree = "";
     double mainRadius=0 , subRadius=0 ,costsub = 0;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +131,7 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
         TextView mainnum = (TextView) findViewById(R.id.numbermaintree) ;
         mainnum.setText(listMainCircle.size()+" ต้น");
         TextView subnum = (TextView) findViewById(R.id.numbersubtree) ;
-        subnum.setText(listSubCircle.size()+" ต้น");
+        subnum.setText(listSubCircle.size()+" จุด");
         TextView mainradian = (TextView) findViewById(R.id.radian) ;
         mainradian.setText(subRadius + " เมตร");
 
@@ -154,7 +161,7 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
                 cal.append("(ผักบุ้งจีน) หากปลูกพร้อมมะม่วงจะใช้เวลาเจริญเติบโตอีกประมาณ 1 เดือน จากนั้นสามารถเก็บเกี่ยวได้ทันที หากทำอย่างต่อเนื่องสามารถเก็บเกี่ยวได้ประมาณ 50-55 ครั้ง  ");
             }
             TextView water = (TextView) findViewById(R.id.wateruse) ;
-            water.setText("     ควรใช้น้ำต่อไร่มะม่วงในประมาณ "+(listMainCircle.size()*22.5)+" ลิตรต่อวันในพื้นที่นี้ แต่หากมะม่วงติดผลแล้วควรใช้น้ำประมาณ "+(listMainCircle.size()*22.5)+" ลิตรต่อวันต่อพื้นที่นี้");
+            water.setText("     ควรใช้น้ำต่อไร่มะม่วงในประมาณ "+(listMainCircle.size()*22.5)+" ลิตรต่อวันในพื้นที่นี้ แต่หากมะม่วงติดผลแล้วควรใช้น้ำประมาณ "+(listMainCircle.size()*60)+" ลิตรต่อวันต่อพื้นที่นี้");
         }
         else if(mainRadius == 4){
             TextView cal = (TextView) findViewById(R.id.calculate) ;
@@ -172,7 +179,7 @@ public class All_result extends FragmentActivity implements OnMapReadyCallback {
                 cal.append("(ผักบุ้งจีน) หากปลูกพร้อมมะม่วงจะใช้เวลาเจริญเติบโตอีกประมาณ 1 เดือน จากนั้นสามารถเก็บเกี่ยวได้ทันที หากทำอย่างต่อเนื่องสามารถเก็บเกี่ยวได้ประมาณ 80 ครั้ง  ");
             }
             TextView water = (TextView) findViewById(R.id.wateruse) ;
-            water.setText("  ควรใช้น้ำต่อไร่ลำไยในประมาณ "+(listMainCircle.size())+" ลิตรต่อวันในพื้นที่นี้ แต่หากมะม่วงติดผลแล้วควรใช้น้ำประมาณ "+(listMainCircle.size()*22.5)+" ต่อวันต่อพื้นที่นี้");
+            water.setText("  ควรใช้น้ำต่อไร่ลำไยในประมาณ "+(listMainCircle.size()*20)+" ลิตรต่อวันในพื้นที่นี้ แต่หากมะม่วงติดผลแล้วควรใช้น้ำประมาณ "+(listMainCircle.size()*50)+" ต่อวันต่อพื้นที่นี้");
         }
 
     }

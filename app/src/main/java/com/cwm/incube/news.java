@@ -14,10 +14,17 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class news extends AppCompatActivity {
 
     private RecyclerView newsblog ;
     private DatabaseReference mDatabase ;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

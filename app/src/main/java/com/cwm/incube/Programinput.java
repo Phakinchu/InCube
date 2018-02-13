@@ -1,5 +1,6 @@
 package com.cwm.incube;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,9 +17,16 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 public class Programinput extends AppCompatActivity  {
 
     String tree1,tree2,tree3 ;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

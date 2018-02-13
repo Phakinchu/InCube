@@ -39,6 +39,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+
 import static com.cwm.incube.R.id.maintree;
 import static com.cwm.incube.R.id.map;
 
@@ -54,6 +56,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Polygon polygon;
     TextView areatext ;
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(base));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

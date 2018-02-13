@@ -22,17 +22,14 @@
             android:id="@+id/constraintLayout"
             android:layout_width="203dp"
             android:layout_height="38dp"
-            android:layout_marginBottom="285dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/bordercolorblack"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-            app:layout_constraintVertical_bias="0.01">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
             <ImageView
                 android:id="@+id/imageView8"
@@ -288,9 +285,10 @@
 
         <TextView
             android:id="@+id/wateruse"
-            android:layout_width="228dp"
-            android:layout_height="88dp"
-            android:layout_marginStart="24dp"
+            android:layout_width="213dp"
+            android:layout_height="82dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="TextView"
             android:textColor="#000000"
             android:textSize="12sp"
@@ -330,10 +328,10 @@
             android:layout_height="38dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
             android:background="@drawable/borderbutton"
             android:text="กลับหน้าหลัก"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView11" />
 
